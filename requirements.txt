@@ -1,0 +1,9 @@
+Flask==1.0.2
+Pillow==5.4.1
+opencv-python 
+numpy
+future
+gunicorn
+imageio
+tensorflow==1.14.0
+cassandra-driver
