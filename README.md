@@ -10,13 +10,21 @@ In the process of doing this project, I have faced lots of troubles and struggli
 requirment:
 
 1.docker
+
 2.Flask==1.0.2
+
 3.numpy
+
 4.Pillow==5.4.1
+
 5.opencv-python
+
 6.imageio
+
 7.tensorflow==1.14.0
+
 8.future
+
 9.cassandra-driver
 
 
