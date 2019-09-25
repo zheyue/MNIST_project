@@ -34,8 +34,11 @@ NOTICEFICATION:
 
 1. download the Anaconda Navigator.
 2. open your terminal(for Mac):
+
         $ conda activate tf
+        
          then you should be able to see that the environment already change from (base) to (tf), like this:
+         
          (tf) zheyuedeMacBook-Pro:~ zheyue$
          
 3. you can run the mnist_softmax.py.  Here, I run this python file under the MNIST_data, so I use $cd MNIST_data to run it.
@@ -48,6 +51,7 @@ For the first part, we use the TensorFlow to training our handwriting model from
 On the file mnist_softmax.py, save the model:
 
             sess = tf.InteractiveSession()
+            
             saver = tf.train.Saver() #save model
             
 and add below code after the training process, the for loop:
@@ -62,6 +66,7 @@ Part II: read the saved model that we trained and get the handwritting-number ph
 Since I notice that when we run the mnist_softmax.py, it automatically creat additional 4 .gz file, wich contain the photo from mnist data set. However, we can not directly use it as those are compressd as binary file. Thus, we need to decompression those file to get the photos that come with .png form(as .png form we can directly use it). The processing code can be found on my load_softmax.py. Besides, at the bottom of the load_softmax.py:
 
               with tf.Session().as_default() as sess: 
+              
               saver.restore(sess, 'MNIST_data/model.ckpt')
 
 I use above code for read the saved mode we just trained. 
@@ -76,8 +81,11 @@ As you can see on my call.py file, I have a funtion:
  to read the photo from user and compare with the handwritting-photo that already trained. 
  
                     im = cv2.imread(filename,cv2.IMREAD_GRAYSCALE).astype(np.float32)
+                    
                     im = cv2.resize(im,(28,28),interpolation=cv2.INTER_CUBIC)
+                    
                     img_gray = (im - (255 / 2.0)) / 255
+                    
                     x_img = np.reshape(img_gray , [-1 , 784])
   
  Above code is the process of read the informations form the user's photo.
@@ -101,19 +109,29 @@ As you can see on my call.py file, I have a funtion:
   Part V: run the whole project:
   --------------------------------
   1. on terminal: first activate the enviroment:
+  
         $ conda activate tf
  
  2. create a new cassandra contanier:
+ 
         $ docker run --name zheyue-cassandra2 -p 9042:9042 -d cassandra:latest
+        
          -p is the mapping port. Without  -p 9042:9042, you might not be able to connect your cassandra.
+         
   3. run you flask file.
+  
   4. use either $curl -XPOST http://127.0.0.1:5000/upload -F"file=@two.png"(in a new terminal window) or like me Running on http://127.0.0.1:5000/.
   
   5. In a new terminal window, run:
+  
         $ docker exec -it zheyue-cassandra2 cqlsh
+        
          and 
+         
          cqlsh> DESC KEYSPACES; (#find your keyspace)
+         
          cqlsh> use mymnist; (#this is my keyspace)
+         
          cqlsh:mymnist> select * from mymnist;(# my table name also is mymnist)
   
   
