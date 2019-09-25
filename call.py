@@ -1,8 +1,6 @@
 import tensorflow as tf
 from flask import Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
-from cassandra.cluster import Cluster
-from cassandra.query import SimpleStatement
 import cv2
 import numpy as np
 import connect
@@ -10,13 +8,6 @@ import time
 import logging
 
 
-
-
-log = logging.getLogger()
-log.setLevel('INFO')
-handler = logging.StreamHandler()
-handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
-log.addHandler(handler)
 
 
 x = tf.placeholder(tf.float32, [None, 784])
