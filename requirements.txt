@@ -5,5 +5,5 @@ numpy
 future
 gunicorn
 imageio
-tensorflow==1.14.0
+tensorflow==2.9.3
 cassandra-driver
